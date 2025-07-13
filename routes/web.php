@@ -7,6 +7,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\ExportController;
+use App\Http\Controllers\DashboardController;
 
 // Login
 Route::get('/', [LoginController::class, 'showLoginForm']);
@@ -19,9 +20,10 @@ Route::get('/register', [RegisterController::class, 'showForm'])->name('register
 Route::post('/register', [RegisterController::class, 'store']);
 
 // ADMIN ONLY
-Route::get('/admin/dashboard', function () {
-    return view('admin.dashboard');
-})->middleware(['auth'])->name('admin.dashboard');
+Route::get('admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+// Route::get('/admin/dashboard', function () {
+//     return view('admin.dashboard');
+// })->middleware(['auth'])->name('admin.dashboard');
 
 Route::get('/user/dashboard', function () {
     return view('user.dashboard');

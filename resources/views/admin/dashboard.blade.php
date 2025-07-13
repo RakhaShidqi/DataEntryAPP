@@ -33,13 +33,13 @@
         <div class="col-md-3">
             <div class="info-box">
                 <h6>Total Customer</h6>
-                <p>+ 30,000</p>
+                <p>{{ number_format($totalCustomers) }}</p>
             </div>
         </div>
         <div class="col-md-3">
             <div class="info-box">
                 <h6>Total Subscribe</h6>
-                <p>+ 30,000</p>
+                <p>{{ number_format($totalSubscribers) }}</p>
             </div>
         </div>
         <div class="col-md-3">
