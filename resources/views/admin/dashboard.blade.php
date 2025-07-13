@@ -74,32 +74,43 @@
     <div class="row g-3">
         <div class="col-md-6">
             <div class="card-section">
-                <h6>Stock Alert</h6>
+                <h6>Customer List</h6>
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th>Order ID</th><th>Date</th><th>Quantity</th><th>Alert amt.</th><th>Status</th>
+                            <th>Full Name</th><th>Email</th><th>Phone</th><th>Status</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td>001</td><td>2025-07-13</td><td>3</td><td>Low</td><td>Pending</td></tr>
-                        <tr><td>002</td><td>2025-07-12</td><td>2</td><td>Low</td><td>Pending</td></tr>
-                        <tr><td>003</td><td>2025-07-11</td><td>4</td><td>Low</td><td>Pending</td></tr>
+                        @foreach ($customers as $customer)
+                            <tr>
+                                <td>{{ $customer->fullname }}</td>
+                                <td>{{ $customer->email }}</td>
+                                <td>{{ $customer->phone }}</td>
+                                <td>{{ $customer->status }}</td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
         </div>
         <div class="col-md-6">
             <div class="card-section">
-                <h6>Top Selling Products</h6>
+                <h6>Subscription List</h6>
                 <table class="table table-sm">
                     <thead>
-                        <tr><th>Order ID</th><th>Quantity</th><th>Alert amt.</th></tr>
+                        <tr><th>Customer Name</th><th>Subscription ID</th><th>Service Name</th><th>Installation ID</th><th>Monthly</th></tr>
                     </thead>
                     <tbody>
-                        <tr><td>001</td><td>10</td><td>Normal</td></tr>
-                        <tr><td>002</td><td>12</td><td>Normal</td></tr>
-                        <tr><td>003</td><td>14</td><td>Normal</td></tr>
+                        @foreach ($subscribes as $subscribe)
+                            <tr>
+                                <td>{{ $subscribe->customer->fullname ?? 'N/A' }}</td> <!-- Menampilkan nama customer -->
+                                <td>{{ $subscribe->subscription_id }}</td>             <!-- ID langganan -->
+                                <td>{{ $subscribe->service_name }}</td>                <!-- Nama layanan -->
+                                <td>{{ $subscribe->installation_id }}</td>             <!-- ID pemasangan -->
+                                <td>Rp{{ number_format($subscribe->monthly, 0, ',', '.') }}</td> <!-- Harga bulanan -->
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
