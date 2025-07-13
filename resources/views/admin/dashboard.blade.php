@@ -30,28 +30,28 @@
 </style>
 <div class="container-fluid">
     <div class="row g-3 mb-3">
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="info-box">
                 <h6>Total Customer</h6>
                 <p>{{ number_format($totalCustomers) }}</p>
             </div>
         </div>
-        <div class="col-md-3">
+        <div class="col-md-4">
             <div class="info-box">
                 <h6>Total Subscribe</h6>
                 <p>{{ number_format($totalSubscribers) }}</p>
             </div>
         </div>
-        <div class="col-md-3">
+        <!-- <div class="col-md-3">
             <div class="info-box">
                 <h6>Purchase</h6>
                 <p>+ 30,000</p>
             </div>
-        </div>
-        <div class="col-md-3">
+        </div> -->
+        <div class="col-md-4">
             <div class="info-box">
                 <h6>Income</h6>
-                <p>+ 30,000</p>
+                <p>Rp{{ number_format($totalIncome, 0, ',', '.') }}</p>
             </div>
         </div>
     </div>

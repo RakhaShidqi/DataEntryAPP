@@ -13,7 +13,8 @@ class DashboardController extends Controller
         $totalCustomers = Customer::count();
         $subscribes = Subscribe::latest()->take(5)->get();
         $totalSubscribers = Subscribe::count();
+        $totalIncome = Subscribe::sum('monthly');
 
-        return view('admin.dashboard', compact('customers', 'subscribes', 'totalCustomers', 'totalSubscribers'));
+        return view('admin.dashboard', compact('customers', 'subscribes', 'totalCustomers', 'totalSubscribers', 'totalIncome'));
     }
 }
