@@ -26,7 +26,6 @@ class CustomerController extends Controller
 
         $customer = Customer::create($validated);
 
-        // Log aktivitas: tambah customer
         ActivityLog::create([
             'user'        => Auth::user()->name ?? 'Guest',
             'activity'    => 'Created',
@@ -34,7 +33,6 @@ class CustomerController extends Controller
             'timestamp'   => now(),
         ]);
 
-        // Log jika statusnya Active
         if ($customer->status === 'Active') {
             ActivityLog::create([
                 'user'        => Auth::user()->name ?? 'Guest',
@@ -46,4 +44,49 @@ class CustomerController extends Controller
 
         return redirect()->route('customers.index')->with('success', 'Customer berhasil ditambahkan.');
     }
+
+    // public function edit($id)
+    // {
+    //     $customer = Customer::findOrFail($id);
+    //     return view('admin.customer-edit', compact('customer'));
+    // }
+
+    // public function update(Request $request, $id)
+    // {
+    //     $customer = Customer::findOrFail($id);
+
+    //     $validated = $request->validate([
+    //         'fullname' => 'required|string|max:255',
+    //         'email'    => 'required|email|unique:customers,email,' . $customer->id,
+    //         'phone'    => 'required|string|max:20',
+    //         'status'   => 'required|in:Active,Not Active',
+    //     ]);
+
+    //     $customer->update($validated);
+
+    //     ActivityLog::create([
+    //         'user'        => Auth::user()->name ?? 'Guest',
+    //         'activity'    => 'Updated',
+    //         'description' => 'Updated customer: ' . $customer->fullname,
+    //         'timestamp'   => now(),
+    //     ]);
+
+    //     return redirect()->route('customers.index')->with('success', 'Customer berhasil diperbarui.');
+    // }
+
+    // public function destroy($id)
+    // {
+    //     $customer = Customer::findOrFail($id);
+    //     $name = $customer->fullname;
+    //     $customer->delete();
+
+    //     ActivityLog::create([
+    //         'user'        => Auth::user()->name ?? 'Guest',
+    //         'activity'    => 'Deleted',
+    //         'description' => 'Deleted customer: ' . $name,
+    //         'timestamp'   => now(),
+    //     ]);
+
+    //     return redirect()->route('customers.index')->with('success', 'Customer berhasil dihapus.');
+    // }
 }

@@ -41,6 +41,8 @@
     <div class="customer-header">
         <h3>Customer</h3>
         <div>
+            <a href="#" class="btn btn-outline-warning">Edit</a>
+            <a href="#" class="btn btn-outline-danger">Delete</a>
             <a href="#" class="btn btn-outline-primary">Export to Excel</a>
             <a href="#" class="btn btn-outline-secondary">Import</a>
             <a href="#" class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#addCustomerModal">+ New Customer</a>
@@ -91,7 +93,7 @@
     </div>
 </div>
 
-<!-- Modal -->
+<!-- Modal Add Customer -->
 <div class="modal fade" id="addCustomerModal" tabindex="-1" aria-labelledby="addCustomerModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="{{ route('customers.store') }}" method="POST">

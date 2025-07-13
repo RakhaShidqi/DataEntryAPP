@@ -32,6 +32,10 @@ Route::get('/user/dashboard', function () {
 // ✅ Customers Page
 Route::get('/customers', [CustomerController::class, 'index'])->middleware('auth')->name('customers.index');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
+// Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
+// Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('customers.update');
+// Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+
 
 // ✅ Subscribe Page
 Route::get('/subscribes', [SubscribeController::class, 'index'])->middleware('auth')->name('subscribes.index');
