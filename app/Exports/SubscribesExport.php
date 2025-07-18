@@ -6,7 +6,7 @@ use App\Models\Subscribe;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class SubscribeExport implements FromCollection, WithHeadings
+class SubscribesExport implements FromCollection, WithHeadings
 {
     public function collection()
     {

@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-    .customer-header {
+    .subscribes-header {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -38,16 +38,22 @@
     }
 </style>
 <div class="container-fluid">
-    <div class="customer-header">
+    <div class="subscribes-header">
         <h3>Susbcription</h3>
         <div>
             <a href="#" class="btn btn-outline-warning">Edit</a>
-            <a href="#" class="btn btn-outline-danger">Delete</a>
-            <a href="#" class="btn btn-outline-primary">Export to Excel</a>
-            <a href="#" class="btn btn-outline-secondary">Import</a>
+            <a href="#" id="btn-delete" class="btn btn-outline-danger">Delete</a>
+            <a href="{{ route('subscribes.export') }}" class="btn btn-outline-primary">Export to Excel</a>
+            <!-- <a href="#" class="btn btn-outline-secondary">Import</a> -->
             <a href="#" class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#subscriptionModal">+ New Subscription</a>
         </div>
     </div>
+    <form id="delete-form" method="POST" action="{{ route('subsribes.bulkDelete') }}">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="selected_ids" id="selected_ids">
+    </form>
+
 
     <div class="search-bar">
         <div class="input-group">
@@ -71,7 +77,7 @@
             <tbody>
                 @foreach ($subscriptions as $subscribe)
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="subscribe_ids[]" value="{{ $subscribe->id }}"></td>
                         <td>{{ $subscribe->customer->fullname ?? 'N/A' }}</td>
                         <td>{{ $subscribe->subscription_id }}</td>
                         <td>{{ $subscribe->service_name }}</td>
@@ -134,5 +140,22 @@
     </form>
   </div>
 </div>
+
+<script>
+    document.getElementById('btn-delete').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        const selected = [...checkboxes].map(cb => cb.value).filter(v => v !== 'on'); // skip header
+
+        if (selected.length === 0) {
+            alert("Pilih minimal satu subscriptions untuk dihapus.");
+            return;
+        }
+
+        if (confirm('Yakin ingin menghapus subscriptions yang dipilih?')) {
+            document.getElementById('selected_ids').value = selected.join(',');
+            document.getElementById('delete-form').submit();
+        }
+    });
+</script>
 
 @endsection

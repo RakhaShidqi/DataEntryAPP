@@ -42,12 +42,16 @@
         <h3>Customer</h3>
         <div>
             <a href="#" class="btn btn-outline-warning">Edit</a>
-            <a href="#" class="btn btn-outline-danger">Delete</a>
-            <a href="#" class="btn btn-outline-primary">Export to Excel</a>
-            <a href="#" class="btn btn-outline-secondary">Import</a>
+            <a href="#" id="btn-delete" class="btn btn-outline-danger">Delete</a>
+            <a href="{{ route('customers.export') }}" class="btn btn-outline-primary">Export to Excel</a>
             <a href="#" class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#addCustomerModal">+ New Customer</a>
         </div>
     </div>
+    <form id="delete-form" method="POST" action="{{ route('customers.bulkDelete') }}">
+                    @csrf
+                    @method('DELETE')
+                    <input type="hidden" name="selected_ids" id="selected_ids">
+    </form>
 
     <div class="search-bar">
         <div class="input-group">
@@ -70,7 +74,7 @@
             <tbody>
                 @forelse ($customers as $customer)
                     <tr>
-                        <td><input type="checkbox"></td>
+                        <td><input type="checkbox" name="customer_ids[]" value="{{ $customer->id }}"></td>
                         <td>{{ $customer->fullname }}</td>
                         <td>{{ $customer->email }}</td>
                         <td>{{ $customer->phone }}</td>
@@ -132,4 +136,21 @@
     </form>
   </div>
 </div>
+
+<script>
+    document.getElementById('btn-delete').addEventListener('click', function () {
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:checked');
+        const selected = [...checkboxes].map(cb => cb.value).filter(v => v !== 'on'); // skip header
+
+        if (selected.length === 0) {
+            alert("Pilih minimal satu customer untuk dihapus.");
+            return;
+        }
+
+        if (confirm('Yakin ingin menghapus customer yang dipilih?')) {
+            document.getElementById('selected_ids').value = selected.join(',');
+            document.getElementById('delete-form').submit();
+        }
+    });
+</script>
 @endsection

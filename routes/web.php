@@ -8,6 +8,10 @@ use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\LogActivityController;
 use App\Http\Controllers\ExportController;
 use App\Http\Controllers\DashboardController;
+use App\Exports\CustomerExport;
+use App\Exports\SubscribesExport;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 // Login
 Route::get('/', [LoginController::class, 'showLoginForm']);
@@ -32,15 +36,20 @@ Route::get('/user/dashboard', function () {
 // ✅ Customers Page
 Route::get('/customers', [CustomerController::class, 'index'])->middleware('auth')->name('customers.index');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-// Route::get('/customers/{id}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
-// Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('customers.update');
-// Route::delete('/customers/{id}', [CustomerController::class, 'destroy'])->name('customers.destroy');
+Route::delete('/customers/bulk-delete', [CustomerController::class, 'bulkDelete'])->name('customers.bulkDelete');
+Route::get('/customers/export', function () {
+    return Excel::download(new CustomerExport, 'customers.xlsx');
+})->name('customers.export');
 
 
 // ✅ Subscribe Page
 Route::get('/subscribes', [SubscribeController::class, 'index'])->middleware('auth')->name('subscribes.index');
 Route::get('/subscribes', [SubscribeController::class, 'index'])->name('subscribes.index');
 Route::post('/subscribes', [SubscribeController::class, 'store'])->name('subscribes.store');
+Route::delete('/subscribes/bulk-delete', [SubscribeController::class, 'bulkDelete'])->name('subsribes.bulkDelete');
+Route::get('/subscribes/export', function () {
+    return Excel::download(new SubscribesExport, 'subscribes.xlsx');
+})->name('subscribes.export');
 
 // ✅ Log Activity Page
 Route::get('/logs', [LogActivityController::class, 'index'])->name('logs.index');
