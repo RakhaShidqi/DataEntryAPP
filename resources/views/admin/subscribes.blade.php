@@ -41,7 +41,7 @@
     <div class="subscribes-header">
         <h3>Susbcription</h3>
         <div>
-            <a href="#" class="btn btn-outline-warning">Edit</a>
+            <!-- <a href="#" class="btn btn-outline-warning">Edit</a> -->
             <a href="#" id="btn-delete" class="btn btn-outline-danger">Delete</a>
             <a href="{{ route('subscribes.export') }}" class="btn btn-outline-primary">Export to Excel</a>
             <!-- <a href="#" class="btn btn-outline-secondary">Import</a> -->

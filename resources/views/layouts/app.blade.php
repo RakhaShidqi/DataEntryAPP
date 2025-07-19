@@ -58,7 +58,7 @@
             <a href="/customers">👤 Customer</a>
             <a href="/subscribes">📧 Subscribe</a>
             <a href="/logs"> 📄 Log Activity</a>
-            <a href="/export">📤 Export</a>
+            <!-- <a href="/export">📤 Export</a> -->
         </div>
         <div class="logout">
             <a href="#" class="btn btn-dark btn-sm w-100" data-bs-toggle="modal" data-bs-target="#logoutModal">

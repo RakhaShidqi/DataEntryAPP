@@ -37,6 +37,7 @@ Route::get('/user/dashboard', function () {
 // ✅ Customers Page
 Route::get('/customers', [CustomerController::class, 'index'])->middleware('auth')->name('customers.index');
 Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
+Route::put('/customers/{id}', [CustomerController::class, 'update'])->name('customers.update');
 Route::delete('/customers/bulk-delete', [CustomerController::class, 'bulkDelete'])->name('customers.bulkDelete');
 Route::get('/customers/export', function () {
     return Excel::download(new CustomerExport, 'customers.xlsx');

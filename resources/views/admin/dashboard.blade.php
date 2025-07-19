@@ -2,6 +2,7 @@
 
 @section('content')
 <style>
+
     .info-box {
         background: #fff;
         border-radius: 10px;

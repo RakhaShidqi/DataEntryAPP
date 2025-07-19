@@ -41,7 +41,7 @@
     <div class="customer-header">
         <h3>Customer</h3>
         <div>
-            <a href="#" class="btn btn-outline-warning">Edit</a>
+            <!-- <a href="#" class="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editCustomerModal">Edit</a> -->
             <a href="#" id="btn-delete" class="btn btn-outline-danger">Delete</a>
             <a href="{{ route('customers.export') }}" class="btn btn-outline-primary">Export to Excel</a>
             <a href="#" class="btn btn-purple" data-bs-toggle="modal" data-bs-target="#addCustomerModal">+ New Customer</a>
@@ -136,6 +136,48 @@
     </form>
   </div>
 </div>
+
+<!-- Edit Customer Modal -->
+<div class="modal fade" id="editCustomerModal" tabindex="-1" aria-labelledby="editCustomerModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form action="{{ route('customers.store') }}" method="PUT">
+        @csrf
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="EditCustomerModalLabel">Edit New Customer</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="fullname" class="form-label">Full Name</label>
+                    <input type="text" class="form-control" name="fullname" required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" required>
+                </div>
+                <div class="mb-3">
+                    <label for="phone" class="form-label">Phone</label>
+                    <input type="text" class="form-control" name="phone" required>
+                </div>
+                <div class="mb-3">
+                    <label for="status" class="form-label">Status</label>
+                    <select name="status" class="form-select" required>
+                        <option value="Active">Active</option>
+                        <option value="Not Active">Not Active</option>
+                    </select>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-success">Save Customer</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+            </div>
+        </div>
+    </form>
+  </div>
+</div>
+
+<!--  -->
 
 <script>
     document.getElementById('btn-delete').addEventListener('click', function () {
