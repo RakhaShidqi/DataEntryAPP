@@ -30,13 +30,13 @@ class SubscribeController extends Controller
 
         $subsriptions = Subscribe::create($validated);
 
-        Subscribe::create([
-            'customer_id' => $request->customer_id,
-            'service_name' => $request->service_name,
-            'installation_id' => $request->installation_id,
-            'subscription_id' => $request->subscription_id,
-            'monthly' => $request->monthly,
-        ]);
+        // Subscribe::create([
+        //     'customer_id' => $request->customer_id,
+        //     'service_name' => $request->service_name,
+        //     'installation_id' => $request->installation_id,
+        //     'subscription_id' => $request->subscription_id,
+        //     'monthly' => $request->monthly,
+        // ]);
 
         return redirect()->route('subscribes.index')->with('success', 'Subscription berhasil ditambahkan.');
     }

@@ -39,7 +39,7 @@
 <div class="container-fluid">
     <div class="log-header">
         <h3>Log Activity</h3>
-        <a href="#" class="btn btn-outline-primary">Download Log</a>
+        <a href="{{ route('Logs.export') }}" class="btn btn-outline-primary">Download Log</a>
     </div>
 
     <div class="search-bar">

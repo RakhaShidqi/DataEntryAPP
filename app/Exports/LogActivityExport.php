@@ -6,7 +6,7 @@ use App\Models\ActivityLog;
 use Maatwebsite\Excel\Concerns\FromCollection;
 use Maatwebsite\Excel\Concerns\WithHeadings;
 
-class LogExport implements FromCollection, WithHeadings
+class LogActivityExport implements FromCollection, WithHeadings
 {
     public function collection()
     {

@@ -10,6 +10,7 @@ use App\Http\Controllers\ExportController;
 use App\Http\Controllers\DashboardController;
 use App\Exports\CustomerExport;
 use App\Exports\SubscribesExport;
+use App\Exports\LogActivityExport;
 use Maatwebsite\Excel\Facades\Excel;
 
 
@@ -53,6 +54,9 @@ Route::get('/subscribes/export', function () {
 
 // ✅ Log Activity Page
 Route::get('/logs', [LogActivityController::class, 'index'])->name('logs.index');
+Route::get('/logs/export', function () {
+    return Excel::download(new LogActivityExport, 'LogActivity.xlsx');
+})->name('Logs.export');
 
 // ✅ Export Page & Process
 Route::get('/export', [ExportController::class, 'index'])->middleware('auth')->name('export.index');
