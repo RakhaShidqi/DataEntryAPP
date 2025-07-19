@@ -72,7 +72,7 @@
                 </div>
                 </div>
 
-            <p class="mt-3 text-center small">Belum punya akun? <a href="/register">Daftar di sini</a></p>
+            <!-- <p class="mt-3 text-center small">Belum punya akun? <a href="/register">Daftar di sini</a></p> -->
         </div>
     </div>
 
